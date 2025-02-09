@@ -18,7 +18,8 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #55efc4, #00b894);
+            background: #01796f;
+            /* Sesuaikan warna latar belakang dengan halaman login */
             margin: 0;
             height: 100vh;
             display: flex;
@@ -38,7 +39,8 @@
         .register-logo a {
             font-size: 24px;
             font-weight: 600;
-            color: #00b894;
+            color: #145a32;
+            /* Sesuaikan warna dengan warna tombol login */
             text-decoration: none;
         }
 
@@ -67,7 +69,8 @@
         }
 
         .btn-primary {
-            background: #00b894;
+            background: #145a32;
+            /* Sesuaikan warna tombol dengan login */
             border: none;
             border-radius: 5px;
             transition: background 0.3s;
@@ -75,7 +78,8 @@
         }
 
         .btn-primary:hover {
-            background: #009975;
+            background: #27ae60;
+            /* Sesuaikan warna hover dengan login */
         }
 
         .register-footer {
@@ -84,7 +88,7 @@
         }
 
         .register-footer a {
-            color: #00b894;
+            color: #145a32;
             text-decoration: none;
             font-weight: 500;
         }
@@ -102,15 +106,19 @@
 
 <body>
     <div class="register-box">
-        <div class="register-logo">
+        <div class="register-logo"
+            style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+            <img src="{{ asset('image/remove.png') }}" alt="Apotek Telu Logo" width="80" style="margin-bottom: 15px;">
             <a href="#"><b>Apotek</b> Telu</a>
         </div>
+
         <p class="login-box-msg">Register a new membership</p>
 
         <form action="{{ route('register') }}" method="post">
             @csrf
             <div class="form-group">
-                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Full Name" value="{{ old('name') }}" required>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                    placeholder="Full Name" value="{{ old('name') }}" required>
                 <span class="fa fa-user"></span>
                 @error('name')
                     <p class="text-danger">{{ $message }}</p>
@@ -118,7 +126,8 @@
             </div>
 
             <div class="form-group">
-                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}" required>
+                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                    placeholder="Email" value="{{ old('email') }}" required>
                 <span class="fa fa-envelope"></span>
                 @error('email')
                     <p class="text-danger">{{ $message }}</p>
@@ -126,7 +135,8 @@
             </div>
 
             <div class="form-group">
-                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required>
+                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                    placeholder="Password" required>
                 <span class="fa fa-lock"></span>
                 @error('password')
                     <p class="text-danger">{{ $message }}</p>
@@ -134,7 +144,8 @@
             </div>
 
             <div class="form-group">
-                <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
+                <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password"
+                    required>
                 <span class="fa fa-lock"></span>
             </div>
 

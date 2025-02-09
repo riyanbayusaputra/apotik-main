@@ -41,43 +41,42 @@
       </a>
       <nav id="navbar" class="navbar">
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/layanan">Layanan</a></li>
-            <li><a href="/galeri">Gallery</a></li>
-            <li><a href="/kontak">Contact</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/product">Product</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/kontak">Contact</a></li>
 
-            <!-- Cek apakah pengguna sudah login -->
-            @guest
-                <li>
-                    <a href="{{ route ('login') }}"
-                        style="background-color: white; padding: 10px 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); color: black;">
-                        Login/Register
-                    </a>
-                </li>
-            @else
-            @hasrole('users') 
-                <li><a href="/rekomendasi">Rekomendasi</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle px-3 py-2" href="#" id="userDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"
-                        style="background-color: white; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); color: black; display: inline-block;">
-                        {{ Auth::user()->name }}
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li>
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="dropdown-item">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                </li>
-                @endhasrole('users') 
-            @endguest
-           
+          <!-- Cek apakah pengguna sudah login -->
+          @guest
+        <li>
+        <a href="{{ route('login') }}"
+          style="background-color: white; padding: 10px 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); color: black;">
+          Login/Register
+        </a>
+        </li>
+      @else
+      @hasrole('users')
+      <li><a href="/rekomendasi">Rekomendasi</a></li>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle px-3 py-2" href="#" id="userDropdown" role="button"
+        data-bs-toggle="dropdown" aria-expanded="false"
+        style="background-color: white; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); color: black; display: inline-block;">
+        {{ Auth::user()->name }}
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+        <li>
+        <form action="{{ route('logout') }}" method="POST">
+          @csrf
+          <button type="submit" class="dropdown-item">Logout</button>
+        </form>
+        </li>
+      </ul>
+      </li>
+      @endhasrole('users')
+    @endguest
+
         </ul>
-    </nav>
+      </nav>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>

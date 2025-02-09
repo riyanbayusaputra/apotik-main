@@ -32,15 +32,16 @@ use App\Http\Controllers\PenjualanDetailController;
 */
 
 
-    Route::get('/', [FrontController::class, 'index'])->name('index');
-    Route::get('/about', [FrontController::class, 'about'])->name('about');
-    Route::get('/galeri', [FrontController::class, 'galeri'])->name('galeri');
-    Route::get('/kontak', [FrontController::class, 'kontak'])->name('kontak');
+Route::get('/', [FrontController::class, 'index'])->name('index');
+Route::get('/about', [FrontController::class, 'about'])->name('about');
+Route::get('/product', [FrontController::class, 'product'])->name('product');
+Route::get('/show/{id}', [FrontController::class, 'show'])->name('show');
+Route::get('/kontak', [FrontController::class, 'kontak'])->name('kontak');
 
 
-    Route::middleware(['auth'])->group(function () {
-     Route::get('/rekomendasi', [RekomendasiController::class, 'rekomendasi'])->name('rekomendasi');
-    });
+Route::middleware(['auth'])->group(function () {
+    Route::get('/rekomendasi', [RekomendasiController::class, 'rekomendasi'])->name('rekomendasi');
+});
 
 Route::middleware(['auth', 'can:manage dashboard'])->group(function () {
     Route::get('/dashboard', function () {
@@ -74,7 +75,7 @@ Route::middleware(['auth', 'can:manage users'])->group(function () {
 
 
 
-   
+
 
 
 // Route::middleware(['auth', 'can:manage pengguna'])->group(function () {

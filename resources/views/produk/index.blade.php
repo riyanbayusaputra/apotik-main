@@ -41,7 +41,7 @@
                                             <h5 class="modal-title" id="exampleModalLabel">Import Produk</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('importproduk') }}" method="POST"
+                                            <form action="{{ route('importexcel') }}" method="POST"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-3">

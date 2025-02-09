@@ -118,9 +118,9 @@
                 </div>
             </div>
         </form>
-        <!-- <div class="login-footer">
+        <div class="login-footer">
             <p>Don't have an account? <a href="{{ route('register') }}">Register now</a></p>
-        </div> -->
+        </div>
     </div>
 
     <!-- jQuery -->
