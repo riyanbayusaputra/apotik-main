@@ -82,7 +82,8 @@ class RekomendasiController extends Controller
     // **FILTER: Hanya tampilkan produk dengan skor lebih dari 0**
     $filteredProducts = $scoredProducts->filter(function ($product) {
         return $product->score > 0;
-    })->sortByDesc('score')->values(); // Urutkan dari skor tertinggi
+    })->sortByDesc('score')->values()
+    ->take(1); // Urutkan dari skor tertinggi
 
     return view('frontend.rekomendasi', [
         'recommendedProducts' => $filteredProducts,
