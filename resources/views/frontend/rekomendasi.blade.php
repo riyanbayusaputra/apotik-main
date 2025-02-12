@@ -66,27 +66,34 @@
             </nav>
         </div>
     </header>
-<div class="container">
-    <h1>Rekomendasi Produk</h1>
-    <div class="row">
-        @foreach($recommendedProducts as $prodak)
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="{{ asset('storage/' . $prodak->logo) }}" class="card-img-top" alt="{{ $prodak->nama }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $prodak->nama }}</h5>
-                        <p class="card-text">{{ $prodak->deskripsi }}</p>
-                        <p class="card-text"><strong>Kategori:</strong> {{ $prodak->kategori }}</p>
-                        <p class="card-text"><strong>Gejala:</strong> {{ $prodak->gejala }}</p>
-                        <p class="card-text"><strong>Usia:</strong> {{ $prodak->usia }}</p>
-                        <p class="card-text"><strong>Harga:</strong> Rp{{ number_format($prodak->harga, 0, ',', '.') }}</p>
-                        {{-- <p class="card-text"><strong>Skor:</strong> {{ $prodak->score }}</p> --}}
+    <div class="container">
+        <h1>Rekomendasi Produk</h1>
+        <div class="row">
+            @if($recommendedProducts->isNotEmpty())
+                @foreach($recommendedProducts as $prodak)
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <img src="{{ asset('storage/' . $prodak->logo) }}" class="card-img-top" alt="{{ $prodak->nama }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $prodak->nama }}</h5>
+                                <p class="card-text">{{ $prodak->deskripsi }}</p>
+                                <p class="card-text"><strong>Kategori:</strong> {{ $prodak->kategori }}</p>
+                                <p class="card-text"><strong>Gejala:</strong> {{ $prodak->gejala }}</p>
+                                <p class="card-text"><strong>Usia:</strong> {{ $prodak->usia }}</p>
+                                <p class="card-text"><strong>Harga:</strong> Rp{{ number_format($prodak->harga, 0, ',', '.') }}</p>
+                                <p class="card-text"><strong>Skor:</strong> {{ number_format($prodak->score, 2) }}</p>
+                            </div>
+                        </div>
                     </div>
+                @endforeach
+            @else
+                <div class="col-12">
+                    <p class="text-center">Tidak ada rekomendasi produk yang sesuai dengan preferensi Anda.</p>
                 </div>
-            </div>
-        @endforeach
+            @endif
+        </div>
     </div>
-</div>
+    
 </footer><!-- End Footer -->
 
 <!-- Vendor JS Files -->

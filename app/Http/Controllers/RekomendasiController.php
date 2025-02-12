@@ -37,55 +37,58 @@ class RekomendasiController extends Controller
             ->with('success', 'Preferensi berhasil disimpan!');
     }
     public function contentBasedFiltering()
-    {
-        $user = Auth::user();
-        $preferences = UserPreference::where('user_id', $user->id)->first();
+{
+    $user = Auth::user();
+    $preferences = UserPreference::where('user_id', $user->id)->first();
 
-        // Ambil semua produk
-        $allProducts = Prodak::all();
-
-       // Jika tidak ada preferensi pengguna, tidak menampilkan produk
+    // Jika tidak ada preferensi pengguna, tidak menampilkan produk
     if (!$preferences) {
         return view('frontend.rekomendasi', [
-            'recommendedProduct' => null,
+            'recommendedProducts' => collect(), // Kirim koleksi kosong
             'preferences' => null
         ]);
     }
 
-        // Inisialisasi bobot fitur
-        $weights = [
+    // Ambil semua produk
+    $allProducts = Prodak::all();
+
+    // Inisialisasi bobot fitur
+    $weights = [
         'kategori' => 0.38,
         'gejala' => 0.31,
         'usia' => 0.31,
-        ];
+    ];
 
-        // Hitung skor similarity
-        $scoredProducts = $allProducts->map(function ($product) use ($preferences, $weights) {
-            $score = 0;
+    // Hitung skor similarity
+    $scoredProducts = $allProducts->map(function ($product) use ($preferences, $weights) {
+        $score = 0;
 
-            if ($product->kategori === $preferences->kategori) {
-                $score += $weights['kategori'];
-            }
+        if ($product->kategori === $preferences->kategori) {
+            $score += $weights['kategori'];
+        }
 
-            if ($product->gejala === $preferences->gejala) {
-                $score += $weights['gejala'];
-            }
+        if ($product->gejala === $preferences->gejala) {
+            $score += $weights['gejala'];
+        }
 
-            if ($product->usia == $preferences->usia) {
-                $score += $weights['usia'];
-            }
+        if ($product->usia == $preferences->usia) {
+            $score += $weights['usia'];
+        }
 
-            $product->score = $score;
-            return $product;
-        });
+        $product->score = $score;
+        return $product;
+    });
 
-        // Urutkan berdasarkan skor tertinggi
-        $sortedProducts = $scoredProducts->sortByDesc('score')->values()->take(1);
+    // **FILTER: Hanya tampilkan produk dengan skor lebih dari 0**
+    $filteredProducts = $scoredProducts->filter(function ($product) {
+        return $product->score > 0;
+    })->sortByDesc('score')->values(); // Urutkan dari skor tertinggi
 
-        return view('frontend.rekomendasi', [
-            'recommendedProducts' => $sortedProducts,
-            'preferences' => $preferences
-        ]);
-    }
+    return view('frontend.rekomendasi', [
+        'recommendedProducts' => $filteredProducts,
+        'preferences' => $preferences
+    ]);
+}
+
 }
 
