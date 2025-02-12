@@ -55,7 +55,7 @@
                         </li>
                     @else
                         @hasrole('users')
-                        <li><a href="/rekomendasi">Rekomendasi</a></li>
+                        <li><a href="/preferensi">Rekomendasi</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle px-3 py-2" href="#" id="userDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false"
@@ -86,19 +86,20 @@
         <section id="produk-detail" class="produk-detail">
             <div class="container mt-5" data-aos="fade-up">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <img src="{{ asset($produk['gambar']) }}" class="img-fluid rounded-4 mb-4"
-                            alt="{{ $produk['nama'] }}">
-                    </div>
+                 
                     <div class="col-lg-6">
                         <h2>{{ $produk['nama'] }}</h2>
-                        <p><strong>Kategori:</strong> {{ $produk['kategori'] }}</p>
-                        <p><strong>Harga:</strong> {{ $produk['harga'] }}</p>
-                        <p><strong>Deskripsi:</strong> {{ $produk['deskripsi'] }}</p>
-                        <p><strong>Manfaat:</strong> {{ $produk['manfaat'] }}</p>
-                        <p><strong>Dosis:</strong> {{ $produk['dosis'] }}</p>
-                        <p><strong>Aturan Pakai:</strong> {{ $produk['aturan_pakai'] }}</p>
-                        <a href="/product" class="btn btn-secondary">Kembali ke Produk</a>
+                        <img src="{{ asset('storage/' . $produk->logo) }}" alt="Logo {{ $produk->nama }}" width="200" class="mb-3">
+
+            <p><strong>Kategori:</strong> {{ $produk->kategori }}</p>
+            <p><strong>Harga:</strong> Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
+            <p><strong>Deskripsi:</strong> {{ $produk->deskripsi }}</p>
+            <p><strong>Manfaat:</strong> {{ $produk->manfaat }}</p>
+            <p><strong>gejala:</strong> {{ $produk->gejala }}</p>
+            <p><strong>usia:</strong> {{ $produk->usia }}</p>
+            <p><strong>Dosis:</strong> {{ $produk->dosis }}</p>
+            <p><strong>Aturan Pakai:</strong> {{ $produk->aturan_pakai }}</p>
+                        <a href="/prodak" class="btn btn-secondary">Kembali </a>
                     </div>
                 </div>
             </div>

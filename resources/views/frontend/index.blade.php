@@ -45,7 +45,7 @@
                         </li>
                     @else
                         @hasrole('users')
-                        <li><a href="/rekomendasi">Rekomendasi</a></li>
+                        <li><a href="/preferensi">Rekomendasi</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle px-3 py-2" href="#" id="userDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false"

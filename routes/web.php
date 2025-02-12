@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ProdakController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\KategoriController;
@@ -35,12 +36,19 @@ use App\Http\Controllers\PenjualanDetailController;
 Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::get('/about', [FrontController::class, 'about'])->name('about');
 Route::get('/product', [FrontController::class, 'product'])->name('product');
-Route::get('/show/{id}', [FrontController::class, 'show'])->name('show');
+
 Route::get('/kontak', [FrontController::class, 'kontak'])->name('kontak');
 
+Route::middleware(['auth', 'can:manage prodak'])->group(function () {
+Route::resource('prodak', ProdakController::class);
+});
+
+Route::get('prodak/detail/{slug}', [FrontController::class, 'show'])->name('show');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/rekomendasi', [RekomendasiController::class, 'rekomendasi'])->name('rekomendasi');
+    Route::get('/preferensi', [RekomendasiController::class, 'preferensi'])->name('preferensi');
+    Route::post('/preferences/save', [RekomendasiController::class, 'savePreferences'])->name('frontend.savePreferences');
+    Route::get('/rekomendasi', [RekomendasiController::class, 'contentBasedFiltering'])->name('rekomendasi');
 });
 
 Route::middleware(['auth', 'can:manage dashboard'])->group(function () {

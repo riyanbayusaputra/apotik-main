@@ -29,7 +29,8 @@ class RolePermissionSeeder extends Seeder
             'manage users',
             'manage laporan',
             'manage dashboard',
-            'manage pengguna'
+            'manage pengguna',
+            'manage prodak'
         ];
 
         // Create or find permissions
@@ -39,7 +40,7 @@ class RolePermissionSeeder extends Seeder
 
         // Create admin role and assign all permissions
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
-        $adminPermissions = ['manage kategori', 'manage produk', 'manage member', 'manage supplier', 'manage pengeluaran', 'manage pembelian', 'manage penjualan', 'manage users', 'manage pengguna'];
+        $adminPermissions = ['manage kategori', 'manage produk', 'manage member', 'manage supplier', 'manage pengeluaran', 'manage pembelian', 'manage penjualan', 'manage users', 'manage pengguna','manage prodak'];
         $adminRole->syncPermissions($adminPermissions);
 
         // Create kasir role and assign limited permissions

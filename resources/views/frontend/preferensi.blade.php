@@ -77,68 +77,46 @@
 
         </ul>
       </nav>
-
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     </div>
   </header><!-- End Header -->
 
-  <main id="main">
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
+  <section id="rekomendasi" class="rekomendasi">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Rekomendasi Obat</h2>
+        <p>Masukkan gejala Anda untuk mendapatkan rekomendasi obat yang sesuai.</p>
+      </div>
 
-        <div class="section-header">
-          <h2>Contact</h2>
-          <p>Temui kami di kontak tersebut</p>
-        </div>
-
-        <div class="row gx-lg-0 gy-4">
-
-          <div class="col-lg-20">
-
-            <div class="info-container d-flex flex-column align-items-center justify-content-center">
-              <div class="info-item d-flex">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h4>Location:</h4>
-                  <p>Jalan Serayu Tegal Rt 5 Rw 8 Kecamatan Mintaragen Kelurahan Tegal Timur</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h4>Email:</h4>
-                  <p>telu@gmail.com</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex">
-                <i class="bi bi-phone flex-shrink-0"></i>
-                <div>
-                  <h4>Call:</h4>
-                  <p>0897468294759</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex">
-                <i class="bi bi-clock flex-shrink-0"></i>
-                <div>
-                  <h4>Open Hours:</h4>
-                  <p>Mon-Sat: 8AM - 9PM</p>
-                </div>
-              </div><!-- End Info Item -->
-            </div>
-
+      <form action="{{ route('frontend.savePreferences') }}" method="POST">
+        @csrf
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <label for="kategori">Jenis Obat</label>
+            <input type="text" name="kategori" id="kategori" class="form-control" placeholder="Jenis Obat" required>
           </div>
 
+          <div class="form-group mt-3">
+            <label for="gejala">Gejala</label>
+            <textarea name="gejala" id="gejala" rows="5" class="form-control" placeholder="Deskripsikan gejala Anda..."
+              required></textarea>
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="usia">Usia</label>
+            <input type="text" name="usia" id="usia" class="form-control" placeholder="Usia Anda" required>
+          </div>
+
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">Dapatkan Rekomendasi</button>
+          </div>
+      </form>
+    </div>
+  </section>
 
 
-        </div>
-    </section><!-- End Contact Section -->
 
-  </main><!-- End #main -->
   <footer id="footer" class="footer">
 
     <div class="container">
@@ -148,9 +126,25 @@
             <span>Apotik Telu</span>
           </a>
           <p>Your Wellness Is Our Wellspring. Dimana Wellness anda adalah jantung kehidupan kami</p>
-
+          <div class="social-links d-flex mt-4">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
         </div>
 
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>
+            <strong>Street:</strong> Jalan Serayu Tegal Rt 5 Rw 8 <br>
+            Kecamatan Mintaragen<br>
+            Kelurahan Tegal Timur <br><br>
+            <strong>Phone:</strong> 0897468294759<br>
+            <strong>Email:</strong> telu@gmail.com<br>
+          </p>
+
+        </div>
 
       </div>
     </div>

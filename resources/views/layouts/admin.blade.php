@@ -200,6 +200,17 @@
                                 </a>
                             </li>
                         @endcan
+
+                        @can('manage prodak')
+                        <li class="nav-item">
+                            <a href="{{ route('prodak.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-cubes" style="color: white;"></i>
+                                <p style="color: white; font-weight: 900;">
+                                    Produk2
+                                </p>
+                            </a>
+                        </li>
+                    @endcan
                         @can('manage member')
                             <li class="nav-item">
                                 <a href="{{route('member.index')}}" class="nav-link">
